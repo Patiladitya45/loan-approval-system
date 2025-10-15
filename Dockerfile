@@ -1,17 +1,17 @@
-# Use official lightweight Python image
+# Use an official Python image
 FROM python:3.9-slim
 
-# Set working directory inside container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy all project files into the container
+# Copy everything from the current folder into the container
 COPY . .
 
-# Install Python dependencies
+# Install required Python packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000 (change if your app uses a different port)
+# Expose port 5000
 EXPOSE 5000
 
-# Command to run your app
+# Run the Python app
 CMD ["python", "app.py"]
