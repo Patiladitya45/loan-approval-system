@@ -1,11 +1,17 @@
-# Use nginx lightweight base image
-FROM nginx:alpine
+# Use official lightweight Python image
+FROM python:3.9-slim
 
-# Copy your HTML file to the default Nginx web directory
-COPY index.html /usr/share/nginx/html/
+# Set working directory in container
+WORKDIR /app
 
-# Expose port 80 (default web port)
-EXPOSE 80
+# Copy project files into the container
+COPY . .
 
-# Default command to run Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose port (change 5000 if your app uses another)
+EXPOSE 5000
+
+# Run the Python app
+CMD ["python", "app.py"]
